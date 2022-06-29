@@ -36,7 +36,7 @@ if(!Validation::validateCnpj($providerCnpj)){
 }
 if(!empty($providerPhone)){
     if(!Validation::validatePhone($providerPhone)){
-        array_push($error, "o telefone tem que ter entre 9 e 11 números");
+        array_push($error, "Número de telefone invalido");
     }
 }
 if(!empty($providerPublicPlace)){
@@ -51,7 +51,7 @@ if(!empty($providerNumberOfStreet)){
 }
 if(!empty($providerComplement)){
     if(!Validation::validateComplement($providerComplement)){
-        array_push($error,"o número de caracteres do complemento deve ser maior que 3");
+        array_push($error,"o número de caracteres do complemento deve ser maior que ");
     }
 }
 if(!empty($providerNeighborhood)){
@@ -75,8 +75,7 @@ if($error){
         type:'warning'
     );
 }else{
-        $provider = new Provider( name: $providerName, cnpj: $providerCnpj , phone: $phone , address:$Address(
-        ));
+        $provider = new Provider( name: $providerName, cnpj: $providerCnpj , phone: $phone , address: $adress);
 
         Redirect::redirect(
             message:"O fornecedor $providername foi cadastrado com sucesso!!!!!!"
