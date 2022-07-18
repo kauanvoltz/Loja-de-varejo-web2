@@ -4,15 +4,17 @@ namespace APP\Model;
 
 class Product
 {
+    private int $id;
     private string $name;
     private float $price;
     private int $quantity;
     private Provider $provider;
 
 
-    public function __construct(float $cost, float $tax, float $operationCost, float $lucre, string $name, int $quantity, Provider $provider)
+    public function __construct(int $id,float $cost, float $tax, float $operationCost, float $lucre, string $name, int $quantity, Provider $provider)
     {
         self::calculateFinalPrice($cost, $tax,  $operationCost, $lucre);
+        $this->id = $id;
         $this->name = $name;
         $this->quantity = $quantity;
         $this->provider = $provider;

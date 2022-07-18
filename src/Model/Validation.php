@@ -15,7 +15,7 @@ class Validation
     }
     public static function validateCnpj(string $cnpj)
     {
-        return mb_strlen ($cnpj) == 14;
+        return mb_strlen ($cnpj) >= 14;
     }
     public static function validatePhone(string $phone):bool
     {
