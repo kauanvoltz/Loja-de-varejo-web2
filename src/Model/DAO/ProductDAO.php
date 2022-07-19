@@ -3,6 +3,7 @@
 namespace APP\Model\DAO;
 
 use APP\Model\Connection;
+use PDO;
 
 class ProductDAO implements DAO
 {
@@ -21,6 +22,9 @@ class ProductDAO implements DAO
     }
     public function findAll()
     {
+        $connection = Connection::getConnection();
+        $stmt = $connection->query("select * from product;");
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     public function update($object)
     {

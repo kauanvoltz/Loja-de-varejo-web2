@@ -10,6 +10,24 @@
 </head>
 
 <body>
+    <nav class='bg-blue-400'>
+        <ul >
+            <li class="inline">
+                <a href="../../index.html">Home</a>
+        </li>
+        <li class="inline ">
+                    <a href="form_add_product.php">Novo produto</a>
+            </li>
+            <li class="inline">
+                <a href="#">Novo Fornecedor</a>
+
+            </li>
+            <li class="inline">
+                <a href="../../src/controller/Product.php?operation=list">Listar Produtos</a>
+
+            </li>
+        </ul>
+    </nav>
     <form action="../Controller/Provider.php" method="POST">
         <fieldset class="p-4 m-5 border border-blue-400">
             <legend>Dados do Fornecedor</legend>

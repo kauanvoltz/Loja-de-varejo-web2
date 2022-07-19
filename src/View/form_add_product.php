@@ -10,7 +10,25 @@
 </head>
 
 <body>
-    <form action="../controller/Product.php" method="POST">
+    <nav class='bg-blue-400'>
+        <ul>
+            <li class="inline">
+                <a href="../../index.html">Home</a>
+            </li>
+            <li class="inline ">
+                <a href="#">Novo produto</a>
+            </li>
+            <li class="inline">
+                <a href="form_add_provider.php">Novo Fornecedor</a>
+
+            </li>
+            <li class="inline">
+                <a href="../../src/controller/Product.php?operation=list">Listar Produtos</a>
+
+            </li>
+        </ul>
+    </nav>
+    <form action="../controller/Product.php? operation=insert" method="POST">
         <fieldset class="p-4 m-5 border border-blue-400">
             <legend>Dados do produto</legend>
             <section class="columns-2">
