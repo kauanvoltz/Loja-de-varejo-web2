@@ -24,8 +24,10 @@
             </li>
             <li class="inline">
                 <a href="../../src/controller/Product.php?operation=list">Listar Produtos</a>
-
             </li>
+            <li class="inline">
+          <a href="list_of_providers.php">Listar Fornecedores</a>
+        </li>
         </ul>
     </nav>
     <form action="../controller/Product.php? operation=insert" method="POST">

@@ -13,16 +13,16 @@ class Address
     private string $city;
     private string $zipCode;
 
-    public function __construct(int $id=0 ,string $publicPlace,string $numberOfStreet,string $complement,string $neighborhood,string $city,string $zipCode, string $streetName)
+    public function __construct(string $publicPlace,string $numberOfStreet,string $complement,string $neighborhood,string $city,string $zipCode, string $streetName,int $id=0)
     {
         $this->id = $id;
         $this->publicPlace = $publicPlace;
-        $this->streatName = $streetName;
+        $this->streetName = $streetName;
         $this->numberOfStreet = $numberOfStreet;
         $this->complement = $complement;
         $this->neighborhood = $neighborhood;
         $this->city = $city;
-        $this->zipcode = $zipCode;
+        $this->zipCode = $zipCode;
     }
 
     public function __get($attribute)

@@ -31,5 +31,9 @@ class ProductDAO implements DAO
     }
     public function delete($id)
     {
+        $connection = Connection::getConnection();
+        $stmt = $connection->prepare('delete from product where product_code = ?');
+        $stmt->bindParam(1,$id);
+        return $stmt->execute();
     }
 }

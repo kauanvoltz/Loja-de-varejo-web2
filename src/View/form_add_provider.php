@@ -24,11 +24,14 @@
             </li>
             <li class="inline">
                 <a href="../../src/controller/Product.php?operation=list">Listar Produtos</a>
-
             </li>
+            <li class="inline">
+          <a href="list_of_providers.php">Listar Fornecedores</a>
+        </li>
+            
         </ul>
     </nav>
-    <form action="../Controller/Provider.php" method="POST">
+    <form action="../Controller/Provider.php?operation=list" method="POST">
         <fieldset class="p-4 m-5 border border-blue-400">
             <legend>Dados do Fornecedor</legend>
             <section class="columns-2">
@@ -50,7 +53,7 @@
         </fieldset>
         <fieldset class="p-4 m-5 border border-blue-400">
             <legend>Endereço do fornecedor</legend>
-            <section class="columns-3">
+            <section class="columns-4">
                 <article>
                     <label for="publicPlace">Logradouro</label>
                     <input type="text" id="publicPlace" name="publicPlace" class="border border-blue-400 ">
@@ -58,6 +61,10 @@
                 <article>
                     <label for="numberOfStreet">Número</label>
                     <input type="number" id="numberOfStreet" name="numberOfStreet" class="border border-blue-400">
+                </article>
+                <article>
+                    <label for="streetName">Nome da rua </label>
+                    <input type="text" id="streetName" name="streetName" class="border border-blue-400">
                 </article>
                 <article>
                     <label for="complement">Complemento</label>

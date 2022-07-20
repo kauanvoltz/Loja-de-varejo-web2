@@ -6,17 +6,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
-    <title>Listagem de produtos</title>
+    <title>Listagem de fornecedores</title>
 </head>
 
 <body>
-
-    <nav class="bg-blue-400 ">
+    <nav class='bg-blue-400'>
         <ul>
             <li class="inline">
                 <a href="../../index.html">Home</a>
             </li>
-            <li class="inline">
+            <li class="inline ">
                 <a href="form_add_product.php">Novo produto</a>
             </li>
             <li class="inline">
@@ -24,48 +23,50 @@
 
             </li>
             <li class="inline">
-                <a href="#">Listar Produtos</a>
+                <a href="list_of_products.php">Listar Produtos</a>
             </li>
             <li class="inline">
-                <a href="list_of_providers.php">Listar Fornecedores</a>
+                <a href="#">Listar Fornecedores</a>
             </li>
+
         </ul>
     </nav>
-    <h1 class="my-4 text-3xl font-bold text-center text-blue-8y00 ">Lista de produtos cadastrados</h1>
+    <h1 class="my-4 text-3xl font-bold text-center text-blue-600">Lista de fornecedores cadastrados</h1>
     <table class="m-auto">
-        <thead class="text-white bg-blue-400 ">
-            <th>#</th>
-            <th>Nome do produto</th>
-            <th>Preço do produto</th>
-            <th>Quantidade em estoque</th>
-            <th>Ações</th>
+        <thead class="text-white bg-blue-400">
+            <th>CNPJ</th>
+            <th>Nome do fornecedor</th>
+            <th>Contato do fornecedor</th>
+            <th>Id do endereço</th>
         </thead>
         <tbody>
             <?php
+
+            use APP\Model\Address;
+
             session_start();
-            foreach ($_SESSION['list_of_products'] as $product) :
+            foreach ($_SESSION['list_of_providers'] as $provider) :
             ?>
                 <tr>
                     <td>
-                        <?= $product['product_code'] ?>
+                        <?= $provider['cnpj'] ?>
                     </td>
                     <td>
-                        <?= $product['product_name'] ?>
+                        <?= $provider['provider_name'] ?>
                     </td>
                     <td>
-                        R$<?= str_replace(".", ",", $product['price']) ?>
+                        <?= $provider['phone'] ?>
                     </td>
                     <td>
-                        <?= $product['quantity'] ?>
-                    </td>
-                    <td>
-                        <a href="../Controller/Product.php?operation=find&code=<?= $product["product_code"]?>">Editar</a>
-                        <a href="../Controller/Product.php?operation=remove&code=<?= $product["product_code"]?>">Remover</a>
+                        <?= $provider['address_code'] ?>
                     </td>
                 </tr>
+
             <?php
             endforeach;
             ?>
+               
+            
         </tbody>
     </table>
 </body>

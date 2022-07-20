@@ -19,7 +19,7 @@ class AddressDAO  implements DAO
         $stmt->bindParam(5, $object->neighborhood);
         $stmt->bindParam(6, $object->city);
         $stmt->bindParam(7, $object->zipCode);
-        $stmt->execute();
+        return $stmt->execute();
     }
     public function findOne($id)
     {

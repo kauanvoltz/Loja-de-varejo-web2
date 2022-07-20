@@ -8,17 +8,51 @@ use APP\Model\DAO\AddressDAO;
 use APP\Model\DAO\ProviderDAO;
 use APP\Utils\Redirect;
 use APP\Model\Validation;
+use Error;
 use PDOException;
 
 require '../../vendor/autoload.php';
 
-if (empty($_POST)) {
-    session_start();
-    Redirect::redirect(
-        type: 'error',
-        message: 'Requisição inválida!!!'
-    );
+if(!isset($_GET['operation'])){
+    Redirect::redirect('Nenhuma operação foi enviada', type:'error');
 }
+switch ($_GET['operation']){
+    case 'insert':
+        insertProvider();
+        break;
+    case 'list':
+        listProviders();
+        break;
+        default:
+        Redirect::redirect('A operação informada é invalida', type:'error');
+}
+
+function insertProvider()
+{
+    if (empty($_POST)) {
+        session_start();
+        Redirect::redirect(
+            type: 'error',
+            message: 'Requisição inválida!!!'
+        );
+    }
+}
+function listProviders(){
+    try{
+        session_start();
+        $dao = new ProviderDAO();
+        $providers = $dao->findAll();
+        if($providers){
+            $_SESSION['list_of_providers'] = $providers;
+            header('location:../View/list_of_providers.php');
+        }else{
+            Redirect::redirect(message:['Não existem fornecedores cadastrados!!!'], type:'warning');
+        }
+    }catch(PDOException $e){
+        Redirect::redirect("lamento, houve um erro inesperado!!!");
+    }
+}
+
 
 $providerCnpj = $_POST['cnpj'];
 $providerName = $_POST['name'];
@@ -79,13 +113,14 @@ if ($error) {
         type: 'warning'
     );
 } else {
-    $provider = new Provider(name: $providerName, cnpj: $providerCnpj, phone: $providerPhone);
-    $address = new Address(publicPlace: $providerPublicPlace, streetName: 'Rua A', numberOfStreet: $providerNumberOfStreet, complement: $providerComplement, neighborhood: $providerNeighborhood, city: $providerCity, zipCode: $providerZipCode);
+    $address = new Address(publicPlace: $providerPublicPlace, streetName: $providerStreetName, numberOfStreet: $providerNumberOfStreet, complement: $providerComplement, neighborhood: $providerNeighborhood, city: $providerCity, zipCode: $providerZipCode, id: $id=0);
+    $provider = new Provider(name: $providerName, cnpj: $providerCnpj, phone: $providerPhone, address:$address);
     try {
         $dao = new AddressDAO();
-        $result = $dao->insert($provider->address);
+        $result = $dao->insert($address);
         if ($result) {
-            $provider->address->id = $dao->findId();
+            $data = $dao->findId();
+            $provider->address->id = $data["id"];
 
             $dao = new ProviderDAO();
             $result = $dao->insert($provider);
@@ -102,4 +137,6 @@ if ($error) {
         // var_dump($e->getMessage());
         // Notificar o desenvolvedor
     }
+
+   
 }

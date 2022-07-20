@@ -11,13 +11,13 @@ class Product
     private Provider $provider;
 
 
-    public function __construct(int $id,float $cost, float $tax, float $operationCost, float $lucre, string $name, int $quantity, Provider $provider)
+    public function __construct(float $cost, float $tax, float $operationCost, float $lucre, string $name, int $quantity, Provider $provider,int $id=0)
     {
         self::calculateFinalPrice($cost, $tax,  $operationCost, $lucre);
-        $this->id = $id;
         $this->name = $name;
         $this->quantity = $quantity;
         $this->provider = $provider;
+        $this->id = $id;
     }
 
     private function calculateFinalPrice(float $cost, float $tax, float $costOfOperation, float $lucre = 0.4): void
