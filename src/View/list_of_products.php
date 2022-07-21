@@ -32,12 +32,12 @@
         </ul>
     </nav>
     <h1 class="my-4 text-3xl font-bold text-center text-blue-8y00 ">Lista de produtos cadastrados</h1>
-    <table class="m-auto">
+    <table class="m-auto ">
         <thead class="text-white bg-blue-400 ">
-            <th>#</th>
-            <th>Nome do produto</th>
-            <th>Preço do produto</th>
-            <th>Quantidade em estoque</th>
+            <th >#</th>
+            <th  >Nome do produto</th>
+            <th  >Preço do produto</th>
+            <th >Quantidade em estoque</th>
             <th>Ações</th>
         </thead>
         <tbody>

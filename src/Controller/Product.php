@@ -24,6 +24,12 @@ switch ($_GET['operation']) {
     case 'remove':
         removeProduct();
         break;
+    case 'find':
+        findProduct();
+        break;
+    case 'edit':
+        editProduct();
+        break;
     default:
         Redirect::redirect('A operação informada é invalida', type: 'error');
 }
@@ -131,4 +137,67 @@ function listProducts()
     } catch (PDOException $e) {
         Redirect::redirect("Lamento,Houve um erro inesperado!!!!", type: 'error');
     }
+}
+
+function  findProduct()
+{
+    if (empty($_GET['code'])) {
+        Redirect::redirect(message: 'o codigo do produto não foi informado!!!!');
+    }
+    $code = $_GET['code'];
+    $dao = new ProductDAO();
+    try {
+        $result = $dao->findOne($code);
+    } catch (PDOException $e) {
+        Redirect::redirect("Lamento,Houve um erro inesperado!!!!", type: 'error');
+    }
+
+
+    if ($result) {
+        session_start();
+        $_SESSION['product_info'] = $result;
+        header("location:../View/form_edit_product.php");
+    } else {
+        Redirect::redirect(message: 'Lamento não localizamos o produto em nossa base de dados', type: 'error');
+    }
+}
+
+function editProduct()
+{
+    if (empty($_POST)) {
+        Redirect::redirect(message: 'Requisição inválida !!!', type: 'error');
+    }
+
+    $code = $_POST['code'];
+    $name = $_POST['name'];
+    $quantity = $_POST['quantity'];
+
+    $error = array();
+    if (!Validation::validateName($name)) {
+        array_push($error, 'o nome do produto deve conter ao menos 3 caracteres!!!');
+    }
+    if (!Validation::validateNumber($quantity)) {
+        array_push($error, 'A quantidade em estoque deve ser superior a zero!!!');
+    }
+
+    $product = new Product(
+        cost:0,
+        tax:0,
+        operationCost:0,
+        lucre:0,
+        quantity:$quantity,
+        name:$name,
+        provider:new Provider(
+            cnpj:'00000/0001',
+            name: "fornecedor padrão"
+        ),
+        id:$code
+        );
+        $dao = new ProductDAO();
+        $result = $dao->update($product);
+        if($result){
+            Redirect::redirect(message:'Produto atualizado com sucesso!!!');
+        }else{
+            Redirect::redirect(message:['Não foi possivel atualizar os dados do produto!!!']);
+        }
 }
