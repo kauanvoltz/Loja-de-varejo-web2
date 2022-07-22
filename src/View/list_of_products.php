@@ -1,3 +1,4 @@
+<?php require_once'../Controller/auth.php'; ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 

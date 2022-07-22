@@ -1,3 +1,4 @@
+<?php require_once'../Controller/auth.php'; ?>
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
@@ -24,7 +25,10 @@
           <a href="../../src/controller/Product.php?operation=list">Listar Produtos</a>
         </li>
         <li class="inline">
-          <a href="../../src/Controller/Provider.php?operation=list">Listar Fornecedores</a>
+          <a href="../Controller/Provider.php?operation=list">Listar Fornecedores</a>
+        </li>
+        <li class="inline">
+          <a href="../Controller/User.php?operation=logout">Sair</a>
         </li>
       </ul>
     </nav>
