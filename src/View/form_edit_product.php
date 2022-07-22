@@ -17,7 +17,7 @@ use APP\Model\Product;
     <nav class='bg-blue-400'>
         <ul>
             <li class="inline">
-                <a href="../../index.html">Home</a>
+                <a href="dashboard.php">Home</a>
             </li>
             <li class="inline ">
                 <a href="#">Novo produto</a>
